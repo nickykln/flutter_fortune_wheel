@@ -8,10 +8,10 @@ const RESOURCES = {
 "assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/NOTICES": "f5aa3b28d38303b4d963409bf8eb813d",
-"main.dart.js": "58340da913e7b941f89bb86c9b0e99be",
+"main.dart.js": "a00b613dfd3a065365d5969032fe7fe7",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"index.html": "7ba6f794bc9137108764fb37e03d697c",
-"/": "7ba6f794bc9137108764fb37e03d697c",
+"index.html": "766030879303cb7ac5193a4b67f997db",
+"/": "766030879303cb7ac5193a4b67f997db",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
