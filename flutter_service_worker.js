@@ -5,14 +5,14 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"manifest.json": "b3b4999ffcf5c4e0855e1b26263d3524",
+"manifest.json": "a2b51a38dd62ecbdd73b1223481063e2",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/NOTICES": "a3d4aa262761500913b222d7e7a191b8",
 "assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "09990c6501de469b406ec70ea2e18fdf",
-"/": "09990c6501de469b406ec70ea2e18fdf",
+"index.html": "b4cd68500d1007464d53ffcaec268a53",
+"/": "b4cd68500d1007464d53ffcaec268a53",
 "version.json": "bd385f4c6626c61f37b8097f05d44a6e",
 "main.dart.js": "822b0d76c1238e5dcc03729ff8aefeae",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
