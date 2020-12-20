@@ -14,7 +14,7 @@ const RESOURCES = {
 "index.html": "b4cd68500d1007464d53ffcaec268a53",
 "/": "b4cd68500d1007464d53ffcaec268a53",
 "version.json": "bd385f4c6626c61f37b8097f05d44a6e",
-"main.dart.js": "822b0d76c1238e5dcc03729ff8aefeae",
+"main.dart.js": "a750b21a034a537872d627a13c704b69",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 
