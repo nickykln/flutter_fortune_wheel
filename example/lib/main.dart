@@ -36,30 +36,39 @@ class _ExamplePageState extends State<ExamplePage> {
       'Darth Vader',
       'Yoda',
       'Ahsoka Tano',
+      'Luke Skywalker',
+      'Darth Vader',
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Fortune Wheel'),
       ),
-      body: GestureDetector(
-        onTap: () {
-          setState(() {
-            selected = Random().nextInt(items.length);
-          });
-        },
-        child: Column(
-          children: [
-            Expanded(
-              child: FortuneWheel(
-                selected: selected,
-                items: [
-                  for (var it in items) FortuneItem(child: Text(it)),
-                ],
-              ),
+      body: Column(
+        children: [
+          FlatButton(
+              onPressed: () {
+                setState(() {
+                  selected = Random().nextInt(items.length);
+                });
+              },
+              child: Text(
+                "restart",
+              )),
+          Expanded(
+            child: RollingFortuneWheel(
+              selected: selected,
+              items: [
+                for (var it in items)
+                  FortuneItem(
+                      style: FortuneItemStyle(
+                          textStyle: TextStyle(fontWeight: FontWeight.bold),
+                          color: Colors.deepPurpleAccent),
+                      child: Text(it)),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

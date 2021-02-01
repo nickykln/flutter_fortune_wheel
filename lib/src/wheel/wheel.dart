@@ -9,6 +9,8 @@ import '../util/util.dart';
 
 part 'fortune_wheel.dart';
 
+part 'rolling_fortune_wheel.dart';
+
 part 'slice.dart';
 
 part 'slice_clipper.dart';
