@@ -111,6 +111,10 @@ class _RollingFortuneWheelState extends State<RollingFortuneWheel> {
     final animationCtrl = useAnimationController(duration: duration);
     final animation =
         CurvedAnimation(parent: animationCtrl, curve: widget.curve);
+    final animationBackCtrl =
+        useAnimationController(duration: Duration(milliseconds: 400));
+    final animationBack =
+        CurvedAnimation(parent: animationBackCtrl, curve: Curves.ease);
 
     Future<void> animate() async {
       if (animationCtrl.isAnimating) {
@@ -134,6 +138,9 @@ class _RollingFortuneWheelState extends State<RollingFortuneWheel> {
         startAngle = 0;
         currentAngle = 0;
       });
+      if (animationCtrl != null) {
+        animationCtrl.reset();
+      }
     });
 
     final wheel = AnimatedBuilder(
@@ -160,20 +167,33 @@ class _RollingFortuneWheelState extends State<RollingFortuneWheel> {
       return GestureDetector(
         behavior: HitTestBehavior.translucent,
         onPanEnd: (details) async {
+          double velocity = details.velocity.pixelsPerSecond.distance;
+          /*
           print('Start Angle = ${startAngle}');
           print('End Angle = ${currentAngle}');
-          print('End Angle = ${currentAngle - startAngle}');
-          double moveAngle = currentAngle - startAngle;
-          if (moveAngle > -30 && moveAngle < 180) {
+          print('Velocity ${velocity}');
+          */
+          if (velocity > 500) {
             if (!running) {
               setState(() {
                 running = true;
-                rotationCount = ((currentAngle - startAngle) ~/ 1).abs();
+                rotationCount =
+                    details.velocity.pixelsPerSecond.distance ~/ 150;
+                duration = Duration(seconds: rotationCount ~/ 2);
               });
+
               print(
-                  'Duration ${duration} / ${rotationCount} - Selected = ${widget.selected}');
+                  'Velocity ${velocity} : Duration ${duration} / ${rotationCount} - Selected = ${widget.selected}');
+
               await animate();
             }
+          } else {
+            animationBackCtrl.reset();
+            animationBackCtrl.forward(from: 0).whenComplete(() {
+              setState(() {
+                startAngle = currentAngle;
+              });
+            });
           }
         },
         onPanStart: (details) {
@@ -181,9 +201,7 @@ class _RollingFortuneWheelState extends State<RollingFortuneWheel> {
               Offset(constraints.maxWidth / 2, constraints.maxHeight / 2);
           final touchPositionFromCenter =
               details.localPosition - centerOfGestureDetector;
-          if (startAngle == 0) {
-            startAngle = touchPositionFromCenter.direction * 180 / Math.pi;
-          }
+          startAngle = touchPositionFromCenter.direction * 180 / Math.pi;
         },
         onPanUpdate: (details) {
           Offset centerOfGestureDetector =
@@ -192,12 +210,21 @@ class _RollingFortuneWheelState extends State<RollingFortuneWheel> {
               details.localPosition - centerOfGestureDetector;
           setState(() {
             currentAngle = touchPositionFromCenter.direction * 180 / Math.pi;
-            //print('Angle = ${currentAngle - startAngle}');
+            // print('Angle = ${currentAngle - startAngle}');
           });
         },
-        child: Transform.rotate(
-            angle: !running ? ((currentAngle - startAngle) * Math.pi / 180) : 0,
-            child: wheel),
+        child: AnimatedBuilder(
+            animation: animationBack,
+            builder: (context, _) {
+              return Transform.rotate(
+                  angle: !running
+                      ? (animationBackCtrl.isAnimating
+                              ? 1 - animationBack.value
+                              : 1) *
+                          ((currentAngle - startAngle) * Math.pi / 180)
+                      : 0,
+                  child: wheel);
+            }),
       );
     });
 
